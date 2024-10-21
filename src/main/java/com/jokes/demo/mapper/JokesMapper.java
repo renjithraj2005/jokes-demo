@@ -1,6 +1,5 @@
 package com.jokes.demo.mapper;
 
-import java.util.List;
 import com.jokes.demo.dto.JokesDto;
 import com.jokes.demo.entity.Joke;
 import org.mapstruct.Mapper;

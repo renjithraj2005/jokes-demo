@@ -2,7 +2,6 @@ package com.jokes.demo.controller;
 
 import java.util.List;
 import com.jokes.demo.dto.JokesDto;
-import com.jokes.demo.entity.Joke;
 import com.jokes.demo.exception.InvalidCountException;
 import com.jokes.demo.mapper.JokesMapper;
 import com.jokes.demo.service.JokeService;

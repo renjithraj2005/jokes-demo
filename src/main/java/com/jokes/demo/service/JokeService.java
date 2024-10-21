@@ -1,10 +1,9 @@
 package com.jokes.demo.service;
 
+import java.util.List;
 import com.jokes.demo.entity.Joke;
 import com.jokes.demo.repository.JokeRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class JokeService {
