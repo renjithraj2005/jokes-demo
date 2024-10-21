@@ -1,7 +1,9 @@
 package com.jokes.demo.controller;
 
 import java.util.List;
+import com.jokes.demo.dto.JokesDto;
 import com.jokes.demo.entity.Joke;
+import com.jokes.demo.mapper.JokesMapper;
 import com.jokes.demo.service.JokeService;
 import com.jokes.demo.utils.MappingConstants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,15 +20,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class JokesController {
 
     private final JokeService jokeService;
+    private final JokesMapper jokesMapper;
 
-    public JokesController(final JokeService jokeService) {
+    public JokesController(final JokeService jokeService, final JokesMapper jokesMapper) {
         this.jokeService = jokeService;
+        this.jokesMapper = jokesMapper;
     }
 
     @Operation(summary = "Get a list of jokes")
     @GetMapping("/jokes")
-    public ResponseEntity<List<Joke>> getJokes(@RequestParam(defaultValue = "1") int count) {
-        List<Joke> jokes = jokeService.getJokes(count);
-        return ResponseEntity.ok(jokes);
+    public ResponseEntity<List<JokesDto>> getJokes(@RequestParam(defaultValue = "1") int count) {
+        return ResponseEntity
+                .ok()
+                .body(jokeService
+                        .getJokes(count)
+                        .stream()
+                        .map(jokesMapper::toJokesDto)
+                        .toList());
     }
 }
