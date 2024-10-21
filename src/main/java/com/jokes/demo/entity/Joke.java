@@ -3,12 +3,14 @@ package com.jokes.demo.entity;
 import com.jokes.demo.entity.core.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 import static java.lang.String.format;
 
 @Entity
 @Data
+@Table(name = "jokes")
 public class Joke extends BaseEntity<Long> {
     @Id
     private Long id;
