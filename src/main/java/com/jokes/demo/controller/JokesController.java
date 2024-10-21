@@ -3,6 +3,7 @@ package com.jokes.demo.controller;
 import java.util.List;
 import com.jokes.demo.dto.JokesDto;
 import com.jokes.demo.entity.Joke;
+import com.jokes.demo.exception.InvalidCountException;
 import com.jokes.demo.mapper.JokesMapper;
 import com.jokes.demo.service.JokeService;
 import com.jokes.demo.utils.MappingConstants;
@@ -30,6 +31,9 @@ public class JokesController {
     @Operation(summary = "Get a list of jokes")
     @GetMapping("/jokes")
     public ResponseEntity<List<JokesDto>> getJokes(@RequestParam(defaultValue = "1") int count) {
+        if (count <= 0) {
+            throw new InvalidCountException("Count must be greater than 0");
+        }
         return ResponseEntity
                 .ok()
                 .body(jokeService
